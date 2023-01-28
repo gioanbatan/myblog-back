@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,8 @@ Route::get('/', function () {
 Route::get('/admin', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->Name('admin.dashboard');
+
+Route::resource('posts', PostController::class);
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
