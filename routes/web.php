@@ -20,11 +20,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', [DashboardController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->Name('admin.dashboard');
 
-Route::resource('posts', PostController::class);
+// Route::middleware(['auth', 'verified'])
+//     ->prefix('admin')
+//     ->name('admin.')
+//     ->group(function () {
+//         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+//         Route::resource('posts', PostController::class)->parameters(['posts' => 'post:slug']);
+//     });
+
+Route::middleware(['auth', 'verified'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('posts', postController::class)->parameters(['posts' => 'post:slug']);
+    });
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');

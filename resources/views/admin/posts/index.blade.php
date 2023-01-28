@@ -4,6 +4,12 @@
     <div class="container">
         <h1>Posts</h1>
 
+        @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endif
+
         {{-- last post published --}}
         <div class="ms_last-post border-bottom">
             <h2>Primo post:</h2>
@@ -23,6 +29,12 @@
             </p>
         </div>
         {{-- /last post published --}}
+
+        {{-- create new post --}}
+        <a class="btn btn-primary my-4" href="{{ route('admin.posts.create') }}">
+            Crea nuovo post
+        </a>
+        {{-- /create new post --}}
 
         {{-- posts list --}}
         <div class="ms_posts-list mt-3">

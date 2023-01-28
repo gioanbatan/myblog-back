@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Functions\Helpers;
 
 class PostController extends Controller
 {
@@ -17,7 +18,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('admin.index', compact('posts'));
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -38,7 +39,20 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        $form_data = $request->all();
+        // dd($request);
+        // dd($form_data);
+        $new_post = new Post();
+
+        // $new_post->title = $form_data['title'];
+        // $new_post->content = $form_data['content'];
+        $new_post->fill($form_data);
+        $new_post->slug = Helpers::generateSlug($form_data['title']);
+
+        // dd($new_post);
+        $new_post->save();
+
+        return redirect()->route('admin.posts.index')->with('message', "Nuovo post creato: $new_post->title");
     }
 
     /**

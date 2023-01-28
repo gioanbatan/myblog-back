@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark ms_header-height">
     <div class="container">
 
-        <a class="navbar-brand" href="#">Myblog - Admin</a>
+        <a class="navbar-brand" href="{{ route('admin.posts.index') }} ">Myblog - Admin</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,10 +10,11 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Dashboard<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Dashboard<span
+                            class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>
+                    <a class="nav-link" href="{{ route('admin.posts.index') }}">Posts</a>
                 </li>
 
                 <form class="form-inline my-2 my-lg-0 d-flex">
